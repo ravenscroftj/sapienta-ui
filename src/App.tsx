@@ -72,9 +72,9 @@ function App() {
 
   const apiRoot = (window.location.host === "localhost:3000") ? "localhost:8000" : window.location.host;
 
-  console.log(apiRoot)
+  const protocol = window.location.protocol === "http:" ? "ws:" : "wss:";
 
-  const ws = new WebSocket(`ws://${apiRoot}/ws`);
+  const ws = new WebSocket(`${protocol}//${apiRoot}/ws`);
 
   ws.onmessage = (msg) => {
     let evt: SapientaEvent = JSON.parse(msg.data);
